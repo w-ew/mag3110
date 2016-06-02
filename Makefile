@@ -1,14 +1,20 @@
 
-SRC=mag3110.c
+SRC=mag3110.c i2c/smbus.c
 TARGET=mag3110
- 
+
 CC ?= gcc
-CFLAGS ?= -O2 -Wall -g
+INC = -Iinclude/
+CFLAGS = -O0 -Wall -g
 
 
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(INC) $(SRC) -o $(TARGET)
 
-all:
-	$(CROSS_COMPILE)gcc $(CFLAGS) $(SRC) -o $(TARGET)
+
+.PHONY: all
+all: $(TARGET)
 	
+	
+.PHONY: clean
 clean:
 	rm -rf $(TARGET)
